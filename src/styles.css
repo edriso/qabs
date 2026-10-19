@@ -1,0 +1,606 @@
+@font-face {
+  font-family: "Amiri Quran";
+  src: url("/fonts/amiri-quran/AmiriQuran.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --background: #f4f0e6;
+  --background-deep: #ebe5d7;
+  --paper: #fffdf7;
+  --ink: #17201c;
+  --muted: #6c746f;
+  --line: #d8d2c4;
+  --line-strong: #a8a294;
+  --green: #184f3a;
+  --green-soft: #e5eee7;
+  --ember: #c4642d;
+  --shadow: 0 18px 50px rgb(36 45 39 / 0.08);
+  background: var(--background);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #17201c;
+  --background-deep: #111713;
+  --paper: #1f2924;
+  --ink: #f1eee4;
+  --muted: #aab1ab;
+  --line: #36423b;
+  --line-strong: #66736c;
+  --green: #8eb99d;
+  --green-soft: #283c32;
+  --ember: #e69a6e;
+  --shadow: 0 18px 60px rgb(0 0 0 / 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 300px;
+  background: var(--background);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 300px;
+  color: var(--ink);
+  background:
+    radial-gradient(
+      circle at 12% 4%,
+      color-mix(in srgb, var(--ember) 7%, transparent) 0,
+      transparent 22rem
+    ),
+    var(--background);
+  font-family: "IBM Plex Sans Arabic", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  font: inherit;
+}
+a {
+  color: inherit;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 4px;
+}
+
+::selection {
+  color: var(--paper);
+  background: var(--green);
+}
+
+.boot {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  color: var(--green);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.app-shell {
+  width: min(100% - 48px, 1160px);
+  min-height: 100vh;
+  margin-inline: auto;
+}
+
+.topbar {
+  min-height: 104px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 15px;
+  min-height: 44px;
+  text-decoration: none;
+  color: var(--green);
+}
+
+.brand span {
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.brand small {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.theme-button,
+.nav-button {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.theme-button:hover,
+.nav-button:hover {
+  color: var(--ink);
+  background: var(--paper);
+  border-color: var(--line);
+}
+
+.theme-button svg,
+.nav-button svg {
+  width: 21px;
+  height: 21px;
+}
+
+main {
+  padding-block: 66px 52px;
+}
+
+.intro {
+  max-width: 710px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.kicker {
+  margin: 0 0 15px;
+  color: var(--ember);
+  font-family: "Amiri Quran", serif;
+  font-size: 18px;
+}
+
+.intro-title {
+  margin: 0;
+  font-size: clamp(27px, 4.2vw, 46px);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+}
+
+.topics {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-bottom: 28px;
+  padding: 5px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.topics::-webkit-scrollbar {
+  display: none;
+}
+
+.topic {
+  min-height: 42px;
+  padding: 7px 17px;
+  flex: 0 0 auto;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 150ms ease;
+}
+
+.topic:hover {
+  color: var(--ink);
+}
+
+.topic[aria-pressed="true"] {
+  color: var(--paper);
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  grid-template-areas: "reader index";
+  align-items: start;
+  gap: 24px;
+}
+
+.passage-index {
+  grid-area: index;
+  max-height: 692px;
+  padding: 8px;
+  overflow-y: auto;
+  background: color-mix(in srgb, var(--paper) 65%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.index-item {
+  width: 100%;
+  min-height: 68px;
+  padding: 13px 14px;
+  display: block;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 11px;
+  text-align: start;
+  cursor: pointer;
+}
+
+.index-item + .index-item {
+  margin-top: 3px;
+}
+.index-item:hover {
+  color: var(--ink);
+  background: var(--background-deep);
+}
+
+.index-item[aria-current="true"] {
+  color: var(--green);
+  background: var(--green-soft);
+}
+
+.index-item span,
+.index-item small {
+  display: block;
+}
+.index-item span {
+  font-weight: 600;
+  line-height: 1.5;
+}
+.index-item small {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.reader {
+  grid-area: reader;
+  position: relative;
+  min-height: 692px;
+  padding: clamp(28px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.reader::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: var(--ember);
+}
+
+.reader-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  color: var(--ember);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.reader h1 {
+  margin: 0;
+  color: var(--green);
+  font-size: clamp(18px, 2.2vw, 25px);
+  line-height: 1.55;
+  font-weight: 600;
+}
+
+.position {
+  min-width: 70px;
+  margin: 3px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  direction: rtl;
+}
+
+.position span {
+  color: var(--ink);
+}
+.position i {
+  width: 18px;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.verses {
+  margin: auto 0;
+  padding-block: 42px;
+  color: var(--ink);
+  font-family: "Amiri Quran", "Amiri", serif;
+  font-size: clamp(25px, 3vw, 35px);
+  line-height: 2.15;
+  text-align: justify;
+  text-align-last: center;
+}
+
+.verse b {
+  color: var(--ember);
+  font-family: "Amiri Quran", serif;
+  font-size: 0.68em;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.reader-footer {
+  padding-top: 25px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.reference strong,
+.reference span {
+  display: block;
+}
+.reference strong {
+  color: var(--green);
+  font-size: 15px;
+  font-weight: 600;
+}
+.reference span {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  gap: 5px;
+}
+
+.text-action,
+.random-button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.text-action {
+  padding: 8px 10px;
+}
+.text-action:hover {
+  color: var(--ink);
+  background: var(--background-deep);
+}
+.text-action svg,
+.random-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.navigation {
+  margin-top: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.random-button {
+  min-width: 132px;
+  padding: 8px 18px;
+  color: var(--paper);
+  background: var(--green);
+}
+
+.random-button:hover {
+  filter: brightness(1.08);
+}
+
+.status {
+  height: 24px;
+  margin-top: 8px;
+  display: block;
+  color: var(--ember);
+  text-align: center;
+  font-size: 12px;
+}
+
+.source-note {
+  margin: 6px 0 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: 11px;
+}
+
+.source-note a {
+  text-underline-offset: 3px;
+}
+
+.site-footer {
+  min-height: 110px;
+  padding-block: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.site-footer p {
+  margin: 0;
+}
+.site-footer a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  text-underline-offset: 4px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 840px) {
+  .app-shell {
+    width: min(100% - 30px, 680px);
+  }
+  .workspace {
+    grid-template-columns: 1fr;
+    grid-template-areas: "reader" "index";
+  }
+  .passage-index {
+    max-height: none;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+  }
+  .index-item {
+    width: 250px;
+    flex: 0 0 250px;
+    scroll-snap-align: start;
+  }
+  .index-item + .index-item {
+    margin-top: 0;
+  }
+  .reader {
+    min-height: 620px;
+  }
+}
+
+@media (max-width: 560px) {
+  .app-shell {
+    width: 100%;
+  }
+  .topbar {
+    min-height: 78px;
+    margin-inline: 18px;
+  }
+  .brand small {
+    display: none;
+  }
+  main {
+    padding-block: 40px 36px;
+  }
+  .intro {
+    margin: 0 22px 30px;
+  }
+  .intro-title {
+    font-size: 27px;
+  }
+  .topics {
+    justify-content: start;
+    margin-bottom: 18px;
+    padding-inline: 18px;
+  }
+  .workspace {
+    gap: 14px;
+  }
+  .reader {
+    min-height: 590px;
+    padding: 28px 22px;
+    border-inline: 0;
+    border-radius: 0;
+  }
+  .reader-header {
+    padding-bottom: 20px;
+  }
+  .verses {
+    padding-block: 34px;
+    font-size: 25px;
+    line-height: 2.12;
+  }
+  .reader-footer {
+    align-items: center;
+  }
+  .actions span {
+    display: none;
+  }
+  .text-action {
+    width: 44px;
+    padding: 0;
+  }
+  .passage-index {
+    margin-inline: 14px;
+  }
+  .site-footer {
+    margin-inline: 18px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

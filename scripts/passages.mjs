@@ -1,0 +1,82 @@
+export const topics = [
+  { id: "patience", label: "الصبر" },
+  { id: "repentance", label: "التوبة" },
+  { id: "paradise", label: "الجنة" },
+  { id: "hereafter", label: "الآخرة" },
+  { id: "trust", label: "التوكل" },
+  { id: "prayer", label: "الدعاء" },
+  { id: "character", label: "الأخلاق" },
+  { id: "invitation", label: "الدعوة" },
+];
+
+export const surahNames = {
+  2: "البقرة",
+  3: "آل عمران",
+  8: "الأنفال",
+  9: "التوبة",
+  10: "يونس",
+  12: "يوسف",
+  14: "إبراهيم",
+  16: "النحل",
+  17: "الإسراء",
+  20: "طه",
+  21: "الأنبياء",
+  23: "المؤمنون",
+  25: "الفرقان",
+  31: "لقمان",
+  39: "الزمر",
+  41: "فصلت",
+  49: "الحجرات",
+  50: "ق",
+  52: "الطور",
+  66: "التحريم",
+  81: "التكوير",
+  84: "الانشقاق",
+  88: "الغاشية",
+  89: "الفجر",
+  94: "الشرح",
+  99: "الزلزلة",
+  101: "القارعة",
+};
+
+export const selections = [
+  ["with-patience", "patience", "الاستعانة بالصبر", 2, 153, 157],
+  ["steadfast-hearts", "patience", "الثبات عند اللقاء", 8, 45, 46],
+  ["patience-beloved", "patience", "الصبر ومحبة الله", 3, 146, 148],
+  ["with-hardship-ease", "patience", "اليسر بعد العسر", 94, 5, 8],
+
+  ["race-to-forgiveness", "repentance", "المسارعة إلى المغفرة", 3, 133, 136],
+  ["changed-to-good", "repentance", "توبة تبدّل السيئات", 25, 68, 71],
+  ["do-not-despair", "repentance", "سعة رحمة الله", 39, 53, 55],
+  ["sincere-repentance", "repentance", "التوبة النصوح", 66, 8, 8],
+
+  ["paradise-brought-near", "paradise", "الجنة الموعودة", 50, 31, 35],
+  ["gardens-and-bliss", "paradise", "نعيم المتقين", 52, 17, 20],
+  ["radiant-faces", "paradise", "وجوه ناعمة", 88, 8, 12],
+  ["return-content", "paradise", "النفس المطمئنة", 89, 27, 30],
+
+  ["souls-will-know", "hereafter", "ما أحضرت النفوس", 81, 10, 14],
+  ["meeting-your-lord", "hereafter", "الكدح إلى الله", 84, 6, 9],
+  ["deeds-revealed", "hereafter", "مثقال الذرة", 99, 6, 8],
+  ["heavy-scales", "hereafter", "ثقل الموازين", 101, 6, 11],
+
+  ["allah-is-enough", "trust", "حسب المؤمنين", 3, 173, 175],
+  ["only-what-allah-decreed", "trust", "الرضا بقدر الله", 9, 51, 52],
+  ["why-not-trust", "trust", "ثبات الرسل", 14, 12, 14],
+  ["upon-him-rely", "trust", "دعاء المتوكلين", 10, 84, 86],
+
+  ["open-my-heart", "prayer", "دعاء موسى", 20, 25, 28],
+  ["no-god-but-you", "prayer", "دعاء يونس", 21, 87, 88],
+  ["seek-refuge", "prayer", "الاستعاذة من الشياطين", 23, 97, 98],
+  ["good-in-both-worlds", "prayer", "حسنة الدنيا والآخرة", 2, 201, 202],
+
+  ["kindness-to-parents", "character", "بر الوالدين", 17, 23, 25],
+  ["gentle-voice", "character", "وصايا لقمان", 31, 17, 19],
+  ["repel-with-better", "character", "مقابلة الإساءة", 41, 34, 36],
+  ["brothers", "character", "أخوة المؤمنين", 49, 10, 12],
+
+  ["a-nation-inviting-good", "invitation", "أمة تدعو إلى الخير", 3, 104, 105],
+  ["my-way", "invitation", "سبيل الداعين", 12, 108, 109],
+  ["with-wisdom", "invitation", "الدعوة بالحكمة", 16, 125, 128],
+  ["best-in-speech", "invitation", "أحسن القول", 41, 33, 35],
+];

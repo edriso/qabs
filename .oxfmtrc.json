@@ -1,0 +1,3 @@
+{
+  "ignorePatterns": ["**/*.md", "data/quran-uthmani.txt", "src/data/passages.json"]
+}

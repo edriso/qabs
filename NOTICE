@@ -1,0 +1,37 @@
+Qabs source code is licensed under the 0BSD license in LICENSE. The following
+material is redistributed under its own terms.
+
+Quran text
+----------
+
+Source: Tanzil Quran Text, Uthmani, version 1.1
+Website: https://tanzil.net
+License: Creative Commons Attribution 3.0
+
+Copyright (C) 2007-2026 Tanzil Project
+
+This copy of the Quran text is carefully produced, highly verified and
+continuously monitored by a group of specialists at Tanzil Project.
+
+Permission is granted to copy and distribute verbatim copies of this text,
+but changing it is not allowed. It may be used in a website or application
+provided that Tanzil Project is clearly indicated and linked so readers can
+follow updates. This notice must accompany verbatim copies or files derived
+from or containing a substantial portion of the text.
+
+Official terms and updates:
+https://tanzil.net/docs/Text_License
+https://tanzil.net/updates/
+
+The pinned original, including Tanzil's own copyright block, is at
+data/quran-uthmani.txt. The site displays exact ranges generated from it.
+
+Fonts
+-----
+
+Amiri Quran by Khaled Hosny and contributors is licensed under the SIL Open
+Font License 1.1. Its license is in public/fonts/amiri-quran/OFL.txt.
+
+IBM Plex Sans Arabic by IBM and contributors is licensed under the SIL Open
+Font License 1.1. Its license is in
+public/fonts/ibm-plex-sans-arabic/OFL.txt.

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <style>
+      @font-face { font-family: Plex; src: url('fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Regular.woff2'); }
+      @font-face { font-family: Plex; src: url('fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-SemiBold.woff2'); font-weight: 600; }
+      .sans { font-family: Plex, sans-serif; }
+    </style>
+  </defs>
+  <rect width="1200" height="630" fill="#f4f0e6"/>
+  <circle cx="50" cy="40" r="250" fill="#c4642d" opacity=".055"/>
+  <path d="M105 95H1095" stroke="#d8d2c4"/>
+  <path d="M105 535H1095" stroke="#d8d2c4"/>
+  <g class="sans" direction="rtl" text-anchor="start">
+    <text x="1095" y="72" font-size="34" font-weight="600" fill="#184f3a">قَـبَـس</text>
+    <text x="1095" y="310" font-size="62" fill="#17201c">مقاطعٌ قصيرة مترابطة،</text>
+    <text x="1095" y="402" font-size="62" fill="#17201c">تقرأها في صلاتك وتحفظها بقلبك.</text>
+    <text x="1095" y="575" font-size="24" fill="#6c746f">آيات قصيرة، عظيمة المعنى</text>
+  </g>
+  <g class="sans" direction="rtl" text-anchor="middle">
+    <text x="600" y="190" font-size="27" fill="#c4642d">مِنْ هَدْيِ القُرْآن</text>
+  </g>
+  <path d="M105 270h52" stroke="#c4642d" stroke-width="4"/>
+</svg>
