@@ -77,10 +77,12 @@ body {
 }
 
 button,
-a {
+a,
+select {
   -webkit-tap-highlight-color: transparent;
 }
-button {
+button,
+select {
   font: inherit;
 }
 a {
@@ -88,7 +90,9 @@ a {
 }
 
 button:focus-visible,
-a:focus-visible {
+a:focus-visible,
+select:focus-visible,
+.verse-scroll:focus-visible {
   outline: 2px solid var(--ember);
   outline-offset: 4px;
 }
@@ -170,35 +174,14 @@ a:focus-visible {
 }
 
 main {
-  padding-block: 66px 52px;
-}
-
-.intro {
-  max-width: 710px;
-  margin: 0 auto 48px;
-  text-align: center;
-}
-
-.kicker {
-  margin: 0 0 15px;
-  color: var(--ember);
-  font-family: "Amiri Quran", serif;
-  font-size: 18px;
-}
-
-.intro-title {
-  margin: 0;
-  font-size: clamp(27px, 4.2vw, 46px);
-  font-weight: 400;
-  line-height: 1.45;
-  letter-spacing: -0.025em;
+  padding-block: 28px 40px;
 }
 
 .topics {
   display: flex;
   justify-content: center;
   gap: 7px;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
   padding: 5px;
   overflow-x: auto;
   scrollbar-width: none;
@@ -231,6 +214,7 @@ main {
 }
 
 .workspace {
+  --reader-height: clamp(590px, calc(100dvh - 220px), 720px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) 280px;
   grid-template-areas: "reader index";
@@ -240,12 +224,16 @@ main {
 
 .passage-index {
   grid-area: index;
-  max-height: 692px;
+  height: var(--reader-height);
   padding: 8px;
   overflow-y: auto;
   background: color-mix(in srgb, var(--paper) 65%, transparent);
   border: 1px solid var(--line);
   border-radius: 18px;
+}
+
+.mobile-picker {
+  display: none;
 }
 
 .index-item {
@@ -291,8 +279,8 @@ main {
 .reader {
   grid-area: reader;
   position: relative;
-  min-height: 692px;
-  padding: clamp(28px, 5vw, 64px);
+  height: var(--reader-height);
+  padding: clamp(24px, 4vw, 48px);
   display: flex;
   flex-direction: column;
   background: var(--paper);
@@ -315,7 +303,7 @@ main {
   align-items: start;
   justify-content: space-between;
   gap: 24px;
-  padding-bottom: 26px;
+  padding-bottom: 18px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -355,9 +343,20 @@ main {
   background: var(--line-strong);
 }
 
+.verse-scroll {
+  min-height: 0;
+  margin-block: 18px;
+  padding: 2px 10px;
+  display: flex;
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--line-strong) transparent;
+  scrollbar-width: thin;
+}
+
 .verses {
   margin: auto 0;
-  padding-block: 42px;
   color: var(--ink);
   font-family: "Amiri Quran", "Amiri", serif;
   font-size: clamp(25px, 3vw, 35px);
@@ -375,7 +374,7 @@ main {
 }
 
 .reader-footer {
-  padding-top: 25px;
+  padding-top: 18px;
   display: flex;
   align-items: end;
   justify-content: space-between;
@@ -431,7 +430,7 @@ main {
 }
 
 .navigation {
-  margin-top: 27px;
+  margin-top: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -450,8 +449,8 @@ main {
 }
 
 .status {
-  height: 24px;
-  margin-top: 8px;
+  height: 20px;
+  margin-top: 5px;
   display: block;
   color: var(--ember);
   text-align: center;
@@ -459,7 +458,7 @@ main {
 }
 
 .source-note {
-  margin: 6px 0 0;
+  margin: 2px 0 0;
   color: var(--muted);
   text-align: center;
   font-size: 11px;
@@ -508,27 +507,39 @@ main {
     width: min(100% - 30px, 680px);
   }
   .workspace {
+    --reader-height: clamp(520px, calc(100dvh - 210px), 680px);
     grid-template-columns: 1fr;
-    grid-template-areas: "reader" "index";
+    grid-template-areas: "picker" "reader";
+    gap: 12px;
   }
   .passage-index {
-    max-height: none;
+    display: none;
+  }
+  .mobile-picker {
+    grid-area: picker;
+    min-height: 50px;
+    padding-inline: 15px;
     display: flex;
-    gap: 8px;
-    padding: 8px;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
+    align-items: center;
+    gap: 12px;
+    color: var(--muted);
+    background: color-mix(in srgb, var(--paper) 65%, transparent);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 13px;
   }
-  .index-item {
-    width: 250px;
-    flex: 0 0 250px;
-    scroll-snap-align: start;
+  .mobile-picker span {
+    flex: 0 0 auto;
+    font-weight: 600;
   }
-  .index-item + .index-item {
-    margin-top: 0;
-  }
-  .reader {
-    min-height: 620px;
+  .mobile-picker select {
+    min-width: 0;
+    min-height: 44px;
+    flex: 1;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
   }
 }
 
@@ -541,38 +552,38 @@ main {
     margin-inline: 18px;
   }
   .brand small {
-    display: none;
+    font-size: 11px;
   }
   main {
-    padding-block: 40px 36px;
-  }
-  .intro {
-    margin: 0 22px 30px;
-  }
-  .intro-title {
-    font-size: 27px;
+    padding-block: 16px 28px;
   }
   .topics {
     justify-content: start;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
     padding-inline: 18px;
   }
   .workspace {
-    gap: 14px;
+    --reader-height: clamp(500px, calc(100dvh - 202px), 650px);
+    gap: 10px;
+  }
+  .mobile-picker {
+    margin-inline: 14px;
   }
   .reader {
-    min-height: 590px;
-    padding: 28px 22px;
+    padding: 22px 20px 18px;
     border-inline: 0;
     border-radius: 0;
   }
   .reader-header {
-    padding-bottom: 20px;
+    padding-bottom: 14px;
+  }
+  .verse-scroll {
+    margin-block: 12px;
+    padding-inline: 2px;
   }
   .verses {
-    padding-block: 34px;
-    font-size: 25px;
-    line-height: 2.12;
+    font-size: clamp(22px, 6.5vw, 27px);
+    line-height: 2.02;
   }
   .reader-footer {
     align-items: center;
@@ -584,8 +595,11 @@ main {
     width: 44px;
     padding: 0;
   }
-  .passage-index {
-    margin-inline: 14px;
+  .navigation {
+    margin-top: 10px;
+  }
+  .source-note {
+    font-size: 10px;
   }
   .site-footer {
     margin-inline: 18px;

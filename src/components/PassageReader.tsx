@@ -29,7 +29,7 @@ export function PassageReader({
 }: Props) {
   return (
     <article className="reader" aria-labelledby="passage-title">
-      <header className="reader-header">
+      <header className="reader-header" aria-live="polite">
         <div>
           <p className="eyebrow">{topic.label}</p>
           <h1 id="passage-title">{passage.title}</h1>
@@ -41,14 +41,21 @@ export function PassageReader({
         </p>
       </header>
 
-      <p className="verses" lang="ar">
-        {passage.verses.map((verse) => (
-          <span className="verse" key={verse.number}>
-            {verse.text}{" "}
-            <b aria-label={`الآية ${arabic(verse.number)}`}>﴿{arabic(verse.number)}﴾</b>{" "}
-          </span>
-        ))}
-      </p>
+      <div
+        className="verse-scroll"
+        key={passage.id}
+        tabIndex={0}
+        aria-label={`نص مقطع ${passage.title}`}
+      >
+        <p className="verses" lang="ar">
+          {passage.verses.map((verse) => (
+            <span className="verse" key={verse.number}>
+              {verse.text}{" "}
+              <b aria-label={`الآية ${arabic(verse.number)}`}>﴿{arabic(verse.number)}﴾</b>{" "}
+            </span>
+          ))}
+        </p>
+      </div>
 
       <footer className="reader-footer">
         <div className="reference">

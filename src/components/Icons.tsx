@@ -65,7 +65,8 @@ export function ShuffleIcon() {
 export function ChevronIcon({ direction }: { direction: "next" | "previous" }) {
   return (
     <Icon>
-      <path d={direction === "next" ? "m9 18 6-6-6-6" : "m15 18-6-6 6-6"} />
+      {/* Forward follows the reading direction in an RTL interface. */}
+      <path d={direction === "next" ? "m15 18-6-6 6-6" : "m9 18 6-6-6-6"} />
     </Icon>
   );
 }

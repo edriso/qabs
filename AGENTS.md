@@ -78,6 +78,9 @@ user data transmission. The saved colour theme stays in localStorage under
   is icon-only.
 - Preserve keyboard focus styles, semantic buttons, native links and the
   `aria-live` status used by copy/share feedback.
+- Passage changes must not scroll the document. The reader keeps a stable
+  height; only its focusable verse region scrolls when a passage needs more
+  room, and remounting that region resets it without moving the page.
 - The selected topic uses `aria-pressed`; the selected passage uses
   `aria-current`.
 - Motion must stop under `prefers-reduced-motion`.

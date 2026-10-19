@@ -46,7 +46,6 @@ export default function App() {
     const url = new URL(window.location.href);
     url.searchParams.set("q", id);
     window.history.replaceState({}, "", url);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function changeTopic(nextTopic: string) {
@@ -122,18 +121,19 @@ export default function App() {
       </header>
 
       <main>
-        <section className="intro" aria-labelledby="intro-title">
-          <p className="kicker">مِنْ هَدْيِ القُرْآن</p>
-          <p className="intro-title" id="intro-title">
-            مقاطعٌ قصيرة مترابطة،
-            <br />
-            تقرأها في صلاتك وتحفظها بقلبك.
-          </p>
-        </section>
-
         <TopicFilter topics={data.topics} active={topic} onChange={changeTopic} />
 
         <div className="workspace">
+          <label className="mobile-picker">
+            <span>اختر مقطعًا</span>
+            <select value={active.id} onChange={(event) => selectPassage(event.target.value)}>
+              {filtered.map((passage) => (
+                <option key={passage.id} value={passage.id}>
+                  {passage.title} — سورة {passage.surahName}
+                </option>
+              ))}
+            </select>
+          </label>
           <PassageIndex passages={filtered} activeId={active.id} onSelect={selectPassage} />
           <PassageReader
             passage={active}
