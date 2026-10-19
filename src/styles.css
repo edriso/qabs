@@ -76,6 +76,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+#root {
+  overflow-anchor: none;
+}
+
 button,
 a,
 select {

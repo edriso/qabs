@@ -81,6 +81,9 @@ user data transmission. The saved colour theme stays in localStorage under
 - Passage changes must not scroll the document. The reader keeps a stable
   height; only its focusable verse region scrolls when a passage needs more
   room, and remounting that region resets it without moving the page.
+- Keep `overflow-anchor: none` on `#root` in both the initial HTML and app
+  CSS. Without it, the full-height loading mark can make a production page
+  open part-way down when React replaces it.
 - The selected topic uses `aria-pressed`; the selected passage uses
   `aria-current`.
 - Motion must stop under `prefers-reduced-motion`.
